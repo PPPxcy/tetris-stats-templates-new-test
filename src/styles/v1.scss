@@ -1,0 +1,17 @@
+:root, body {
+	@apply text-[16px];
+}
+
+@font-face {
+	font-family: SourceHanSansSC;
+	src: url('~/assets/fonts/SourceHanSansSC.woff2');
+}
+
+@font-face {
+	font-family: CabinetGrotesk;
+	src: url('~/assets/fonts/CabinetGrotesk.woff2');
+}
+
+.font-template {
+	@apply font-[CabinetGrotesk\,SourceHanSansSC];
+}
