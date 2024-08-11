@@ -9,8 +9,9 @@
 		"postinstall": "nuxt prepare"
 	},
 	"dependencies": {
+		"@nuxtjs/i18n": "^8.3.3",
 		"nuxt": "^3.12.4",
-		"vue": "^3.4.36"
+		"vue": "^3.4.37"
 	},
 	"devDependencies": {
 		"@unocss/nuxt": "^0.61.9"
