@@ -15,6 +15,7 @@
 	},
 	"devDependencies": {
 		"@unocss/nuxt": "^0.61.9",
-		"remeda": "^2.10.1"
+		"remeda": "^2.10.1",
+		"sass": "^1.77.8"
 	}
 }
