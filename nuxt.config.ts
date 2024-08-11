@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
 	srcDir: 'src',
 	modules: [
-		'@unocss/nuxt'
+		'@unocss/nuxt',
+		'@nuxtjs/i18n'
 	]
 })
