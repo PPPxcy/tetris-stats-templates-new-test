@@ -17,12 +17,12 @@ const data = useData<{
 
 <template>
 	<template v-if="data._lang === Languages.enUS">
-		<span class="w-95.75 mx-auto font-template fw-800 text-6.25 leading-7.75 text-center text-[#000000]">
+		<span class="w-95.75 mx-auto font-template fw-800 text-6.25 text-center text-[#000000]">
 			<span>{{ data.user.name }}</span>
-			<span class="font-template fw-400 text-6.75 leading-7.75 text-center">, your account on</span>
+			<span class="font-template fw-400 text-6.75 text-center">, your account on</span>
 			<span>&nbsp;{{ data.platform }}&nbsp;</span>
 
-			<span class="font-template fw-400 text-6.25 leading-7.75 text-center">
+			<span class="font-template fw-400 text-6.25 text-center">
 				<span>was linked to {{ data.bot.name }}.</span>
 				<span>However, your account is not yet verified.</span>
 			</span>
@@ -30,13 +30,13 @@ const data = useData<{
 	</template>
 
 	<template v-if="data._lang === Languages.zhCN">
-		<span class="w-95.75 mx-auto font-template fw-350 text-6.25 leading-9.05 text-center text-[#000000]">
+		<span class="w-95.75 mx-auto font-template fw-350 text-6.25 text-center text-[#000000]">
 			<span>已将你在</span>
-			<span class="font-template fw-800 text-6.25 leading-7.75 text-center">&nbsp;{{ data.platform }}&nbsp;</span>
+			<span class="font-template fw-800 text-6.25 text-center">&nbsp;{{ data.platform }}&nbsp;</span>
 			<span>上的账号</span>
 
 			<br/>
-			<span class="font-template fw-800 text-6.25 leading-7.75 text-center">{{ data.user.name }}</span>
+			<span class="font-template fw-800 text-6.25 text-center">{{ data.user.name }}</span>
 			<br/>
 
 			<span>绑定至 {{ data.bot.name }}, 但尚未通过验证.</span>

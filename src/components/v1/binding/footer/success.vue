@@ -9,13 +9,13 @@ const data = useData<{
 
 <template>
 	<template v-if="data._lang === Languages.enUS">
-		<span class="w-81 mx-auto font-template fw-500 text-4 leading-4.96 text-center text-[#52525C]">
+		<span class="w-81 mx-auto font-template fw-500 text-4 text-center text-[#52525C]">
 			You can now type in “{{ data.command }}” to retrieve your stats on that platform.
 		</span>
 	</template>
 
 	<template v-if="data._lang === Languages.zhCN">
-		<span class="w-81 mx-auto font-template fw-500 text-4 leading-4.96 text-center text-[#52525C]">
+		<span class="w-81 mx-auto font-template fw-500 text-4 text-center text-[#52525C]">
 			你可以输入 “{{ data.command }}” 命令来查找你在该平台上的统计数据.
 		</span>
 	</template>

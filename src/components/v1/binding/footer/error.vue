@@ -9,13 +9,13 @@ const data = useData<{
 
 <template>
 	<template v-if="data._lang === Languages.enUS">
-		<span class="w-81 mx-auto font-template fw-500 text-4 leading-4.96 text-center text-[#52525C]">
+		<span class="w-81 mx-auto font-template fw-500 text-4 text-center text-[#52525C]">
 			{{ data.error }}
 		</span>
 	</template>
 
 	<template v-if="data._lang === Languages.zhCN">
-		<span class="w-81 mx-auto font-template fw-500 text-4 leading-4.96 text-center text-[#52525C]">
+		<span class="w-81 mx-auto font-template fw-500 text-4 text-center text-[#52525C]">
 			{{ data.error }}
 		</span>
 	</template>
