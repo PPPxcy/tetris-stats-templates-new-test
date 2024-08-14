@@ -34,7 +34,7 @@ const valid = computed(() => {
 			<div class="flex gap-6.25">
 				<div class="w-68.75 h-31.25 rounded-7.5 bg-[#fafafa]"
 					 style="box-shadow: 0 .5625rem 1.5625rem 0 #00000026;">
-					<div class="size-full p-7.5">
+					<div class="size-full p-7.5 box-border">
 						<div class="flex gap-7 items-center">
 							<img :src="data.user.avatar" alt="user.avatar" class="size-15 rounded-2.5"/>
 							<span class="font-template text-7.5 fw-800 text-[#000000]">{{ data.user.name }}</span>
@@ -44,7 +44,7 @@ const valid = computed(() => {
 
 				<div class="w-68.75 h-31.25 rounded-7.5 bg-[#fafafa]"
 					 style="box-shadow: 0 .5625rem 1.5625rem 0 #00000026;">
-					<div class="size-full p-7.5">
+					<div class="size-full p-7.5 box-border">
 						<div class="flex gap-5 items-center">
 							<div class="size-15 rounded-2.5">
 								<svg fill="none" height="61" viewBox="0 0 60 61" width="60"
@@ -66,10 +66,10 @@ const valid = computed(() => {
 							</div>
 
 							<span class="font-template text-6.25 fw-800 leading-[100%] text-[#000000]">
-							<span>Tetris Online</span>
-							<br/>
-							<span>Poland</span>
-						</span>
+								<span>Tetris Online</span>
+								<br/>
+								<span>Poland</span>
+							</span>
 						</div>
 					</div>
 				</div>
