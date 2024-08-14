@@ -1,5 +1,6 @@
 <script generic="T extends string" lang="ts" setup>
 import { isNonNullish, isNullish } from 'remeda'
+import Trending from '~/core/shared/trending'
 
 const props = defineProps<{
 	readonly _key: T
@@ -9,6 +10,7 @@ const data = useData<
 	Record<T, {
 		readonly lpm: number
 		readonly pps: number
+		readonly lpm_trending: Trending
 	}>
 >()
 
@@ -92,7 +94,19 @@ const valid = computed(() => {
 			</div>
 
 			<div class="absolute bottom-4.25 left-6">
-				<span class="font-template text-11.25 fw-500 color-[#4d7d0f]">{{ source.lpm }}</span>
+				<div class="flex items-center">
+					<span class="font-template text-11.25 fw-500 color-[#4d7d0f]">{{ source.lpm }}</span>
+
+					<template v-if="isNonNullish(source.lpm_trending)">
+						<template v-if="source.lpm_trending === Trending.UP">
+							<v1-shared-trending-up/>
+						</template>
+
+						<template v-if="source.lpm_trending === Trending.DOWN">
+							<v1-shared-trending-down/>
+						</template>
+					</template>
+				</div>
 			</div>
 
 			<div class="absolute bottom-6.75 right-6">

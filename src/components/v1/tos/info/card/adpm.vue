@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { isNonNullish, isNullish } from 'remeda'
+import Trending from '~/core/shared/trending'
 
 const data = useData<{
 	readonly multiplayer: {
 		readonly adpm: number
 		readonly vs: number
 		readonly adpl: number
+		readonly adpm_trending: Trending
 	}
 }>()
 
@@ -79,9 +81,21 @@ const valid = computed(() => {
 			</div>
 
 			<div class="absolute bottom-4.25 left-6">
-				<span class="font-template text-11.25 fw-500 color-[#235db4]">
-					{{ data.multiplayer.adpm }}
-				</span>
+				<div class="flex items-center">
+					<span class="font-template text-11.25 fw-500 color-[#235db4]">
+						{{ data.multiplayer.adpm }}
+					</span>
+
+					<template v-if="isNonNullish(data.multiplayer.adpm_trending)">
+						<template v-if="data.multiplayer.adpm_trending === Trending.UP">
+							<v1-shared-trending-up/>
+						</template>
+
+						<template v-if="data.multiplayer.adpm_trending === Trending.DOWN">
+							<v1-shared-trending-down/>
+						</template>
+					</template>
+				</div>
 			</div>
 
 			<div class="absolute bottom-11 right-6.75">
