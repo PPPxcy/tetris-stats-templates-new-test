@@ -65,7 +65,8 @@ const valid = computed(() => {
 								</svg>
 							</div>
 
-							<span class="font-template text-6.25 fw-800 leading-[100%] text-[#000000]">
+							<span
+								class="font-template text-6.25 fw-800 leading-[100%] whitespace-nowrap text-[#000000]">
 								<span>Tetris Online</span>
 								<br/>
 								<span>Poland</span>
