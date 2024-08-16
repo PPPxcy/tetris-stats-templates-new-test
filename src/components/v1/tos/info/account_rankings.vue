@@ -100,5 +100,9 @@ const valid = computed(() => {
 				</div>
 			</div>
 		</div>
+
+		<div class="mt-6.25">
+			<v1-tos-info-chart-line/>
+		</div>
 	</template>
 </template>

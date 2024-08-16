@@ -29,7 +29,33 @@ onMounted(async () => {
 				ge: 0.26,
 				lpm_trending: Trending.UP,
 				apm_trending: Trending.DOWN,
-				adpm_trending: Trending.KEEP
+				adpm_trending: Trending.KEEP,
+
+				history: {
+					data: [
+						{
+							tr: 5000,
+							record_at: new Date(new Date().getFullYear(), 10, 1)
+						},
+						{
+							tr: 20000,
+							record_at: new Date(new Date().getFullYear(), 10, 8)
+						},
+						{
+							tr: 10000,
+							record_at: new Date(new Date().getFullYear(), 10, 15)
+						},
+						{
+							tr: 20000,
+							record_at: new Date(new Date().getFullYear(), 10, 22)
+						}
+					],
+
+					split_interval: 5000,
+					min_tr: 5000,
+					max_tr: 25000,
+					offset: 0
+				}
 			},
 			singleplayer: {
 				'40l': '1m 10.2s',
