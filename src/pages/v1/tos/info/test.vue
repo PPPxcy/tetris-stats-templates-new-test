@@ -33,24 +33,17 @@ onMounted(async () => {
 
 				history: {
 					data: [
-						{
-							tr: 5000,
-							record_at: new Date(new Date().getFullYear(), 10, 1)
-						},
-						{
-							tr: 20000,
-							record_at: new Date(new Date().getFullYear(), 10, 8)
-						},
-						{
-							tr: 10000,
-							record_at: new Date(new Date().getFullYear(), 10, 15)
-						},
-						{
-							tr: 20000,
-							record_at: new Date(new Date().getFullYear(), 10, 22)
-						}
+						{ record_at: new Date(1687363200000), tr: 24510.12 },
+						{ record_at: new Date(1687449600000), tr: 24560.43 },
+						{ record_at: new Date(1687536000000), tr: 24520.35 },
+						{ record_at: new Date(1687622400000), tr: 24550.23 },
+						{ record_at: new Date(1687708800000), tr: 25000.00 },
+						{ record_at: new Date(1687795200000), tr: 24450.42 },
+						{ record_at: new Date(1687881600000), tr: 24530.68 },
+						{ record_at: new Date(1687968000000), tr: 24520.45 },
+						{ record_at: new Date(1688054400000), tr: 24550.54 },
+						{ record_at: new Date(1688140800001), tr: 22454.87 }
 					],
-
 					split_interval: 5000,
 					min_tr: 5000,
 					max_tr: 25000,

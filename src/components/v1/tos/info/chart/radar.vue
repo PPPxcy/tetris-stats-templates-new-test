@@ -63,7 +63,7 @@ const option = computed<ChartOption>(() => {
 				silent: true,
 				axisName: {
 					color: '#fafafa',
-					fontFamily: 'CabinetGrotesk-Variable',
+					fontFamily: 'CabinetGrotesk',
 					fontSize: 15,
 					fontWeight: '800'
 				},
@@ -79,7 +79,7 @@ const option = computed<ChartOption>(() => {
 					show: true,
 					rotate: 0,
 					margin: -1,
-					fontFamily: 'CabinetGrotesk-Variable',
+					fontFamily: 'CabinetGrotesk',
 					fontSize: 7,
 					fontWeight: '800',
 					color: 'white'

@@ -73,19 +73,19 @@ const option = computed(() => {
 				},
 				rich: {
 					month: {
-						fontFamily: 'CabinetGrotesk-Variable',
+						fontFamily: 'CabinetGrotesk',
 						fontSize: 13,
 						fontWeight: 400,
 						color: '#ffffff99'
 					},
 					day: {
-						fontFamily: 'CabinetGrotesk-Variable',
+						fontFamily: 'CabinetGrotesk',
 						fontSize: 20,
 						fontWeight: 800,
 						color: '#ffffff99'
 					},
 					last_month: {
-						fontFamily: 'CabinetGrotesk-Variable',
+						fontFamily: 'CabinetGrotesk',
 						fontSize: 13,
 						fontWeight: 400,
 						color: '#373533',
@@ -97,7 +97,7 @@ const option = computed(() => {
 						lineHeight: 32
 					},
 					last_day: {
-						fontFamily: 'CabinetGrotesk-Variable',
+						fontFamily: 'CabinetGrotesk',
 						fontSize: 20,
 						fontWeight: 800,
 						color: '#373533',
@@ -128,7 +128,7 @@ const option = computed(() => {
 				},
 				rich: {
 					value: {
-						fontFamily: 'CabinetGrotesk-Variable',
+						fontFamily: 'CabinetGrotesk',
 						fontSize: 15,
 						fontWeight: 500,
 						color: '#ffffff99'
@@ -150,22 +150,24 @@ const option = computed(() => {
 					position: 'left',
 					offset: [-20, 20],
 					show: true,
-					formatter: ['{@[1]}', '{textBorder|±340.12}'].join('\n'),
+					formatter: ['{rating|{@[1]}}', '{rd|±340.12}'].join('\n'),
 					align: 'right',
 					backgroundColor: {
 						image: card
 					},
 					borderRadius: 5,
-					padding: [15, 20, 10, 10],
-					fontSize: 45,
-					fontWeight: 800,
-					fontFamily: 'CabinetGrotesk-Variable',
-					lineHeight: 40,
-					color: '#1d1916',
+					padding: [15, 20, 10, 0],
 					rich: {
-						textBorder: {
+						rating: {
+							fontSize: 45,
+							fontWeight: 800,
+							fontFamily: 'CabinetGrotesk',
+							lineHeight: 40,
+							color: '#1d1916'
+						},
+						rd: {
 							fontSize: 30,
-							fontFamily: 'CabinetGrotesk-Variable',
+							fontFamily: 'CabinetGrotesk',
 							color: '#1d1916'
 						}
 					}
