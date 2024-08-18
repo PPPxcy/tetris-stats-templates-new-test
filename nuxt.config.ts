@@ -3,5 +3,10 @@ export default defineNuxtConfig({
 	srcDir: 'src',
 	modules: [
 		'@unocss/nuxt'
-	]
+	],
+	router: {
+		options: {
+			hashMode: true
+		}
+	}
 })
