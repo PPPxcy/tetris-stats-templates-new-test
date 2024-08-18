@@ -18,6 +18,15 @@ const valid = computed(() => {
 
 	return isNonNullish(data.user.avatar) && isNonNullish(data.user.name)
 })
+
+const chart_container = ref<HTMLDivElement>()
+const chart_valid = ref(true)
+
+onMounted(async () => {
+	await nextTick(() => {
+		chart_valid.value = isNonNullish(chart_container.value) && chart_container.value.childElementCount > 0
+	})
+})
 </script>
 
 <template>
@@ -101,7 +110,7 @@ const valid = computed(() => {
 			</div>
 		</div>
 
-		<div class="mt-6.25">
+		<div v-if="chart_valid" ref="chart_container" class="mt-6.25">
 			<v1-tos-info-chart-line/>
 		</div>
 	</template>

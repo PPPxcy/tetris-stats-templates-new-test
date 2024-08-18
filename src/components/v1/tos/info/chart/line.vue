@@ -3,6 +3,7 @@ import { LineChart } from 'echarts/charts'
 import { GridComponent, MarkLineComponent } from 'echarts/components'
 import { use } from 'echarts/core'
 import { SVGRenderer } from 'echarts/renderers'
+import { isNonNullish } from 'remeda'
 import chart from 'vue-echarts'
 import card from '~/assets/images/chart/card.svg'
 import point from '~/assets/images/chart/point.svg'
@@ -237,10 +238,18 @@ const option = computed(() => {
 	}
 })
 
-const valid = ref(false)
+const initialized = ref(false)
 
 onMounted(() => {
-	valid.value = true
+	initialized.value = true
+})
+
+const valid = computed(() => {
+	if (!initialized.value) {
+		return false
+	}
+
+	return isNonNullish(data.multiplayer.history.data) && isNonNullish(data.multiplayer.history.split_interval) && isNonNullish(data.multiplayer.history.min_tr) && isNonNullish(data.multiplayer.history.max_tr) && isNonNullish(data.multiplayer.history.offset)
 })
 </script>
 

@@ -4,6 +4,7 @@ import { RadarChart } from 'echarts/charts'
 import type { ComposeOption } from 'echarts/core'
 import { use } from 'echarts/core'
 import { SVGRenderer } from 'echarts/renderers'
+import { isNonNullish } from 'remeda'
 import chart from 'vue-echarts'
 
 const data = useData<{
@@ -127,10 +128,18 @@ const option = computed<ChartOption>(() => {
 	}
 })
 
-const valid = ref(false)
+const initialized = ref(false)
 
 onMounted(() => {
-	valid.value = true
+	initialized.value = true
+})
+
+const valid = computed(() => {
+	if (!initialized.value) {
+		return false
+	}
+
+	return isNonNullish(data.multiplayer.app) && isNonNullish(data.multiplayer.ci) && isNonNullish(data.multiplayer.dspp) && isNonNullish(data.multiplayer.or) && isNonNullish(data.multiplayer.ge) && isNonNullish(data.multiplayer.pps)
 })
 </script>
 
