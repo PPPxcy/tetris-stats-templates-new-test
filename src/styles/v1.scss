@@ -8,12 +8,14 @@ span {
 
 @font-face {
 	font-family: SourceHanSansSC;
-	src: url('~/assets/fonts/SourceHanSansSC.woff2');
+	src: url('~/assets/fonts/SourceHanSansSC.woff2') format('woff2');
+	font-display: swap;
 }
 
 @font-face {
 	font-family: CabinetGrotesk;
-	src: url('~/assets/fonts/CabinetGrotesk.woff2');
+	src: url('~/assets/fonts/CabinetGrotesk.woff2') format('woff2');
+	font-display: swap;
 }
 
 .font-template {

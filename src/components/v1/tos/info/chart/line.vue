@@ -53,10 +53,6 @@ const option = computed(() => {
 				formatter: (value: number, index: number) => {
 					const date = new Date(value)
 
-					if (index === 0 || index % 2 !== 0) {
-						return ''
-					}
-
 					const month = Number(date.getMonth() + 1)
 						.toString()
 						.padStart(2, '0')
@@ -65,8 +61,12 @@ const option = computed(() => {
 						.toString()
 						.padStart(2, '0')
 
-					if (index === data.multiplayer.history.data.length - 1) {
+					if (index === data.multiplayer.history.data.length) {
 						return `{last_month|${month}}\n{last_day|${day}}`
+					}
+
+					if (index === 0 || index % 2 !== 0) {
+						return ''
 					}
 
 					return `{month|${month}}\n{day|${day}}`
@@ -156,7 +156,7 @@ const option = computed(() => {
 						image: card
 					},
 					borderRadius: 5,
-					padding: [15, 20, 10, 0],
+					padding: [15, 20, 10, 10],
 					rich: {
 						rating: {
 							fontSize: 45,
@@ -241,7 +241,6 @@ const valid = ref(false)
 
 onMounted(() => {
 	valid.value = true
-	console.log(option.value)
 })
 </script>
 
