@@ -1,0 +1,160 @@
+{
+  "v1": {
+    "binding": {
+      "main": {
+        "success": {
+          "text": "已将您在 {gamePlatform} 上的账号 {userName} 成功验证并绑定至 {botName}.",
+          "styles": { "fw": "350" }
+        },
+        "unverified": {
+          "text": "已将您在 {gamePlatform} 上的账号 {userName} 绑定至 {botName}, 但尚未通过验证.",
+          "styles": { "fw": "350" }
+        },
+        "unknown": {
+          "text": "已将您在 {gamePlatform} 上的账号 {userName} 绑定至 {botName}, 但是我们暂时无法验证您的身份.",
+          "styles": { "fw": "350" }
+        },
+        "unbind": {
+          "text": "已将您在 {gamePlatform} 上的账号 {userName} 成功从 {botName} 解绑.",
+          "styles": { "fw": "350" }
+        },
+        "error": {
+          "text": "在将您在 {gamePlatform} 上的账号 {userName} 绑定至 {botName} 时出现了错误。",
+          "styles": { "fw": "350" }
+        }
+      },
+      "footer": {
+        "success": {
+          "text": "你可以输入 {command} 命令来查找你在该平台上的统计数据.",
+          "styles": { "fw": "400" }
+        },
+        "unverified": {
+          "text": "你可以输入 {command} 命令来开始验证你的账号.",
+          "styles": { "fw": "400" }
+        },
+        "unknown": {
+          "text": "你可以输入 {command} 命令来查找你在该平台上的统计数据.",
+          "styles": { "fw": "400" }
+        },
+        "unbind": {
+          "text": "你可以输入 {command} 命令来重新将你在该平台上的账号绑定至 {botName}.",
+          "styles": { "fw": "400" }
+        },
+        "error": {
+          "text": "{error}",
+          "styles": { "fw": "500" }
+        }
+      }
+    },
+    "tetrio": {
+      "info": {
+        "account": {
+          "title": "账号与排位"
+        },
+        "multi": {
+          "title": "多人游戏数据"
+        },
+        "single": {
+          "title": "单人游戏数据"
+        }
+      }
+    },
+    "top": {
+      "info": {
+        "account": { "title": "账号信息" },
+        "historical": {
+          "title": "历史数据"
+        },
+        "today": {
+          "title": "今日数据"
+        }
+      }
+    },
+    "tos": {
+      "info": {
+        "account": {
+          "title": "账号与排位"
+        },
+        "multi": {
+          "title": "多人游戏数据"
+        },
+        "single": {
+          "title": "单人游戏数据"
+        }
+      }
+    }
+  },
+  "v2": {
+    "tetrio": {
+      "rank": {
+        "player": "{value} 玩家",
+        "update_time": "更新时间: {time}",
+        "detail": {
+          "minimum_data": "最低数据",
+          "average_data": "平均数据",
+          "maximum_data": "最高数据"
+        }
+      },
+      "replay": "回放 ID",
+      "record": {
+        "key": {
+          "keys": "按键",
+          "kpp": "按键/块",
+          "kps": "按键/秒"
+        },
+        "max": {
+          "combo": "最大连击",
+          "b2b": "最大 b2b"
+        },
+        "block": {
+          "pieces": "块数",
+          "pps": "块/秒",
+          "lines": "消行",
+          "lpm": "消行/分钟",
+          "holds": "暂存",
+          "level": "等级",
+          "blitz": {
+            "score": "分数",
+            "spp": "分数/块"
+          }
+        },
+        "clear": {
+          "tspin_mini": "T / 迷你 T",
+          "mini_tspin_single_double": "迷你 T1 / 迷你 T2",
+          "all_clear": "全清"
+        },
+        "finesse": {
+          "title": "极简",
+          "faults": "多余操作"
+        }
+      },
+      "user": {
+        "info": {
+          "multi_player": "多人游戏",
+          "single_player": "单人游戏",
+          "tetra_league": {
+            "win_rate": "胜率: {wins} / {total} ({rate}%)",
+            "highest": "历史最高:"
+          },
+          "quick_play_2": {
+            "achieve_time": "达成时间: {time} ({when}前)",
+            "highest": "历史最高: {height}m (#{global_rank}) 在 {time} ({when}前)"
+          },
+          "detail": {
+            "level": "{level} 级 ({xp} XP)",
+            "win_rate": "胜率: {wins} / {total} ({rate}%)",
+            "played_games": "游玩次数: {count}",
+            "wins": "胜场数: {count}",
+            "join_time": "注册时间: {time} ({when}前)"
+          },
+          "single": {
+            "achieve_time": "达成时间: {time} ({when}前)"
+          }
+        },
+        "list": {
+          "level": "{level} 级 ({xp} XP)"
+        }
+      }
+    }
+  }
+}

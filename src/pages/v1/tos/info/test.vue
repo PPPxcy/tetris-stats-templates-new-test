@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { VNode } from 'vue';
-import Trending from '~/core/shared/trending';
+import { Trending } from '~/components/v1/trending/index.vue';
+
 import V1TosInfo from '~/pages/v1/tos/info/index.vue';
 
 const { setLocale } = useI18n();
@@ -68,8 +69,8 @@ onMounted(async () => {
 
 <template>
     <div class="flex flex-col p-2 gap-2">
-        <button @click="setLocale('zh-CN')">zh-CN</button>
-        <button @click="setLocale('en-US')">en-US</button>
+        <button @click="setLocale('zh-CN')" style="z-index: 999999">zh-CN</button>
+        <button @click="setLocale('en-US')" style="z-index: 999999">en-US</button>
         <template v-for="page in pages">
             <Component :is="page" />
         </template>
