@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun generate
+      - run: bun check
+
+      - shell: bash
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install hashdeep -y
+
+      - shell: bash
+        run: |
+          cd .output/public
+          sha256deep -r -l ./ > ../hash.sha256
+          mv ../hash.sha256 .
+          zip -q -r -9 ../../dist.zip .
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist.zip
+          token: ${{ secrets.GITHUB_TOKEN }}
