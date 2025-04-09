@@ -9,7 +9,7 @@ const data = useData(
             user: z.object({
                 avatar: Avatar,
                 name: z.string(),
-                bio: z.string(),
+                bio: z.string().nullable(),
             }),
             multiplayer: z.object({
                 glicko: z.string(),
@@ -57,7 +57,7 @@ onMounted(async () => {
                             />
                             <span class="font-template text-6.25 fw-800 text-[#000000]">{{ data.user.name }}</span>
 
-                            <div class="text-center">
+                            <div v-if="isNonNullish(data.user.bio)" class="text-center">
                                 <span class="font-template text-4.5 fw-400 text-[#000000]">{{ data.user.bio }}</span>
                             </div>
                         </div>
