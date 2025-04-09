@@ -1,5 +1,5 @@
 <template>
-    <div class="w-fit bg-[#f1f1f1] px-6.25">
+    <div id="content" class="w-fit bg-[#f1f1f1] px-6.25">
         <div class="mt-5.5">
             <v1-top-info-account-info />
         </div>

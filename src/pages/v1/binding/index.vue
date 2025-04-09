@@ -1,5 +1,5 @@
 <template>
-    <div class="w-fit bg-[#f1f1f1] p-7.5">
+    <div id="content" class="w-fit bg-[#f1f1f1] p-7.5">
         <div class="flex flex-col gap-3.75">
             <v1-binding-header />
 
