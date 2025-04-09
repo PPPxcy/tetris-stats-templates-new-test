@@ -25,23 +25,23 @@
       },
       "footer": {
         "success": {
-          "text": "你可以输入 {command} 命令来查找你在该平台上的统计数据.",
+          "text": "你可以输入 {prompt} 命令来查找你在该平台上的统计数据.",
           "styles": { "fw": "400" }
         },
         "unverified": {
-          "text": "你可以输入 {command} 命令来开始验证你的账号.",
+          "text": "你可以输入 {prompt} 命令来开始验证你的账号.",
           "styles": { "fw": "400" }
         },
         "unknown": {
-          "text": "你可以输入 {command} 命令来查找你在该平台上的统计数据.",
+          "text": "你可以输入 {prompt} 命令来查找你在该平台上的统计数据.",
           "styles": { "fw": "400" }
         },
         "unbind": {
-          "text": "你可以输入 {command} 命令来重新将你在该平台上的账号绑定至 {botName}.",
+          "text": "你可以输入 {prompt} 命令来重新将你在该平台上的账号绑定至 {botName}.",
           "styles": { "fw": "400" }
         },
         "error": {
-          "text": "{error}",
+          "text": "{prompt}",
           "styles": { "fw": "500" }
         }
       }
