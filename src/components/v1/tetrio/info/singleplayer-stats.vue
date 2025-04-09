@@ -20,7 +20,7 @@ onMounted(() => {
 
         <div class="mt-3.75">
             <div ref="container" class="grid grid-cols-2 gap-6.25">
-                <v1-tetrio-info-card-40l />
+                <v1-tetrio-info-card-sprint />
                 <v1-tetrio-info-card-blitz />
             </div>
         </div>
