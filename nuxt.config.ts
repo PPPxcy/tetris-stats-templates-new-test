@@ -45,6 +45,7 @@ export default defineNuxtConfig({
                 },
             ],
         },
+        cdnURL: './',
     },
     router: {
         options: {
