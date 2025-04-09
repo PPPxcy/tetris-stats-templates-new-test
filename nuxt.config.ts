@@ -36,11 +36,11 @@ export default defineNuxtConfig({
         head: {
             script: [
                 {
-                    innerHTML: `window.__DATA__ = '{{ DATA }}';`,
+                    innerHTML: `window.__DATA__ = '{{ data }}';`,
                     type: 'text/javascript',
                 },
                 {
-                    innerHTML: `window.__PATH__ = '{{ PATH }}';`,
+                    innerHTML: `window.__PATH__ = '{{ path }}';`,
                     type: 'text/javascript',
                 },
             ],
