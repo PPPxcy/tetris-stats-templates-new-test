@@ -8,6 +8,8 @@ import chart from 'vue-echarts';
 import { z } from 'zod';
 import card from '~/assets/images/chart/card.svg';
 import point from '~/assets/images/chart/point.svg';
+import historyData from '~/types/history-data';
+
 use([SVGRenderer, GridComponent, LineChart, MarkLineComponent]);
 
 const data = useData(
@@ -15,14 +17,7 @@ const data = useData(
         .object({
             multiplayer: z.object({
                 history: z.object({
-                    data: z
-                        .array(
-                            z.object({
-                                record_at: z.coerce.date(),
-                                tr: z.number(),
-                            }),
-                        )
-                        .nonempty(),
+                    data: historyData,
                     split_interval: z.number().positive(),
                     min_tr: z.number().positive(),
                     max_tr: z.number().positive(),
@@ -34,6 +29,8 @@ const data = useData(
 );
 
 const option = computed(() => {
+    const interval = 3600 * 24 * 1000;
+
     return {
         animation: false,
         grid: {
@@ -44,8 +41,8 @@ const option = computed(() => {
         },
         xAxis: {
             type: 'time',
-            minInterval: 3600 * 24 * 1000,
-            maxInterval: 3600 * 24 * 1000,
+            minInterval: interval,
+            maxInterval: interval,
             axisTick: {
                 show: false,
             },
@@ -54,6 +51,10 @@ const option = computed(() => {
             },
             axisLabel: {
                 formatter: (value: number, index: number) => {
+                    if (index === 0 || index % 2 !== 0) {
+                        return '';
+                    }
+
                     const date = new Date(value);
 
                     const month = Number(date.getMonth() + 1)
@@ -62,12 +63,8 @@ const option = computed(() => {
 
                     const day = date.getDate().toString().padStart(2, '0');
 
-                    if (index === data.multiplayer.history.data.length) {
+                    if (index === 10) {
                         return `{last_month|${month}}\n{last_day|${day}}`;
-                    }
-
-                    if (index === 0 || index % 2 !== 0) {
-                        return '';
                     }
 
                     return `{month|${month}}\n{day|${day}}`;
@@ -122,8 +119,7 @@ const option = computed(() => {
             axisLabel: {
                 align: 'right',
                 formatter: (value: number) => {
-                    const nf = new Intl.NumberFormat();
-                    const tr = nf.format(value);
+                    const tr = new Intl.NumberFormat().format(value);
 
                     return `{value|${tr}}`;
                 },
@@ -143,7 +139,7 @@ const option = computed(() => {
         series: [
             {
                 data: data.multiplayer.history.data.map((data) => {
-                    return [data.record_at, Number(data.tr)];
+                    return [data.record_at, Number(data.score)];
                 }),
                 type: 'line',
                 smooth: true,
@@ -215,7 +211,7 @@ const option = computed(() => {
                         [
                             {
                                 xAxis: 'max',
-                                yAxis: data.multiplayer.history.data[data.multiplayer.history.data.length - 1]['tr'],
+                                yAxis: data.multiplayer.history.data[data.multiplayer.history.data.length - 1].score,
                             },
                             {
                                 xAxis: 'max',

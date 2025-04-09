@@ -7,23 +7,20 @@ import { isNonNullish } from 'remeda';
 import chart from 'vue-echarts';
 import { z } from 'zod';
 import point from '~/assets/images/chart/point.svg';
+import historyData from '~/types/history-data';
+
 use([SVGRenderer, GridComponent, LineChart, MarkLineComponent]);
 
 const data = useData(
     z
         .object({
             multiplayer: z.object({
-                icon: z.string(),
+                rank: z.string(),
                 tr: z.string(),
-                rank: z.number(),
+                global_rank: z.number(),
 
                 history: z.object({
-                    data: z.array(
-                        z.object({
-                            record_at: z.coerce.date(),
-                            tr: z.number(),
-                        }),
-                    ),
+                    data: historyData,
                     split_interval: z.number(),
                     min_tr: z.number(),
                     max_tr: z.number(),
@@ -35,6 +32,8 @@ const data = useData(
 );
 
 const option = computed(() => {
+    const interval = 3600 * 24 * 1000;
+
     return {
         animation: false,
         grid: {
@@ -45,8 +44,8 @@ const option = computed(() => {
         },
         xAxis: {
             type: 'time',
-            minInterval: 3600 * 24 * 1000,
-            maxInterval: 3600 * 24 * 1000,
+            minInterval: interval,
+            maxInterval: interval,
             axisTick: {
                 show: false,
             },
@@ -55,6 +54,10 @@ const option = computed(() => {
             },
             axisLabel: {
                 formatter: (value: number, index: number) => {
+                    if (index === 0 || index % 2 !== 0) {
+                        return '';
+                    }
+
                     const date = new Date(value);
 
                     const month = Number(date.getMonth() + 1)
@@ -63,12 +66,8 @@ const option = computed(() => {
 
                     const day = date.getDate().toString().padStart(2, '0');
 
-                    if (index === data.multiplayer.history.data.length) {
+                    if (index === 10) {
                         return `{last_month|${month}}\n{last_day|${day}}`;
-                    }
-
-                    if (index === 0 || index % 2 !== 0) {
-                        return '';
                     }
 
                     return `{month|${month}}\n{day|${day}}`;
@@ -123,8 +122,7 @@ const option = computed(() => {
             axisLabel: {
                 align: 'right',
                 formatter: (value: number) => {
-                    const nf = new Intl.NumberFormat();
-                    const tr = nf.format(value);
+                    const tr = new Intl.NumberFormat().format(value);
 
                     return `{value|${tr}}`;
                 },
@@ -144,7 +142,7 @@ const option = computed(() => {
         series: [
             {
                 data: data.multiplayer.history.data.map((data) => {
-                    return [data.record_at, Number(data.tr)];
+                    return [data.record_at, Number(data.score)];
                 }),
                 type: 'line',
                 smooth: true,
@@ -190,7 +188,7 @@ const option = computed(() => {
                         [
                             {
                                 xAxis: 'max',
-                                yAxis: data.multiplayer.history.data[data.multiplayer.history.data.length - 1]['tr'],
+                                yAxis: data.multiplayer.history.data[data.multiplayer.history.data.length - 1].score,
                             },
                             {
                                 xAxis: 'max',
@@ -239,7 +237,7 @@ const valid = computed(() => {
 const icon_image = ref();
 
 onMounted(async () => {
-    icon_image.value = await import(`~/assets/images/rank/${data.multiplayer.icon}.svg?url`).then((module) => {
+    icon_image.value = await import(`~/assets/images/rank/${data.multiplayer.rank}.svg?url`).then((module) => {
         return module.default;
     });
 });
@@ -263,12 +261,12 @@ onMounted(async () => {
             </div>
 
             <div class="absolute top-22.5 left-6.75">
-                <img :alt="data.multiplayer.icon" :src="icon_image" class="size-12.5" />
+                <img :alt="data.multiplayer.rank" :src="icon_image" class="size-12.5" />
             </div>
 
             <div class="absolute top-35.75 left-6">
                 <span class="font-template text-11.25 fw-800 text-[#fafafa]">{{ data.multiplayer.tr }}</span>
-                <span class="font-template text-7.5 fw-400 text-[#fafafa]">(#{{ data.multiplayer.rank }})</span>
+                <span class="font-template text-7.5 fw-400 text-[#fafafa]">(#{{ data.multiplayer.global_rank }})</span>
             </div>
         </div>
     </template>

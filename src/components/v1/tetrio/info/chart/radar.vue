@@ -7,6 +7,7 @@ import { SVGRenderer } from 'echarts/renderers';
 import { isNonNullish } from 'remeda';
 import chart from 'vue-echarts';
 import { z } from 'zod';
+
 const data = useData(
     z
         .object({
