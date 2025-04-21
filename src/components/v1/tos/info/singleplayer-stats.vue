@@ -20,7 +20,7 @@ onMounted(() => {
 
         <div class="mt-3.75">
             <div ref="container" class="grid grid-cols-2 gap-6.25">
-                <v1-tos-info-card-40l />
+                <v1-tos-info-card-sprint />
                 <v1-tos-info-card-challenge />
                 <v1-tos-info-card-marathon />
             </div>

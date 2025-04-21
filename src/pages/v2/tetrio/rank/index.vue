@@ -1,5 +1,20 @@
-<script setup lang="ts">
+<script lang="ts">
 import { z } from 'zod';
+
+const AverageData = z.object({
+    pps: z.number(),
+    apm: z.number(),
+    apl: z.number(),
+    vs: z.number(),
+    adpl: z.number(),
+});
+
+type AverageData = z.infer<typeof AverageData>;
+
+export { AverageData };
+</script>
+
+<script setup lang="ts">
 import { ValidRank } from '~/types/rank';
 
 const { locale } = useI18n();
@@ -12,13 +27,7 @@ const data = useData(
                 z.object({
                     require_tr: z.number(),
                     trending: z.number(),
-                    average_data: z.object({
-                        pps: z.number(),
-                        apm: z.number(),
-                        apl: z.number(),
-                        vs: z.number(),
-                        adpl: z.number(),
-                    }),
+                    average_data: AverageData,
                     players: z.number(),
                 }),
             ),
@@ -34,13 +43,7 @@ const data = useData(
             <v2-tetrio-rank-card v-if="rank" :name="name" size="small">
                 <n-flex justify="space-between">
                     <v2-tetrio-rank-info :name="name" :require_tr="rank.require_tr" :trending="rank.trending" />
-                    <v2-tetrio-rank-statistic
-                        :pps="rank.average_data.pps"
-                        :apm="rank.average_data.apm"
-                        :apl="rank.average_data.apl"
-                        :vs="rank.average_data.vs"
-                        :adpl="rank.average_data.adpl"
-                    />
+                    <v2-tetrio-rank-statistic :average_data="rank.average_data" />
                     <v2-tetrio-rank-players :value="rank.players" />
                 </n-flex>
             </v2-tetrio-rank-card>

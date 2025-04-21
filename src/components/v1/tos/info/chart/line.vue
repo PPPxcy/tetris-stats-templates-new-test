@@ -8,7 +8,7 @@ import chart from 'vue-echarts';
 import { z } from 'zod';
 import card from '~/assets/images/chart/card.svg';
 import point from '~/assets/images/chart/point.svg';
-import historyData from '~/types/history-data';
+import history from '~/types/v1/history';
 
 use([SVGRenderer, GridComponent, LineChart, MarkLineComponent]);
 
@@ -16,13 +16,9 @@ const data = useData(
     z
         .object({
             multiplayer: z.object({
-                history: z.object({
-                    data: historyData,
-                    split_interval: z.number().positive(),
-                    min_tr: z.number().positive(),
-                    max_tr: z.number().positive(),
-                    offset: z.number(),
-                }),
+                history: history,
+                rating: z.number(),
+                rd: z.number(),
             }),
         })
         .readonly(),
@@ -133,8 +129,8 @@ const option = computed(() => {
                 },
             },
             offset: 70,
-            max: data.multiplayer.history.max_tr + data.multiplayer.history.offset,
-            min: data.multiplayer.history.min_tr - data.multiplayer.history.offset,
+            max: data.multiplayer.history.max_value + data.multiplayer.history.offset,
+            min: data.multiplayer.history.min_value - data.multiplayer.history.offset,
         },
         series: [
             {
@@ -147,7 +143,7 @@ const option = computed(() => {
                     position: 'left',
                     offset: [-20, 20],
                     show: true,
-                    formatter: ['{rating|{@[1]}}', '{rd|±340.12}'].join('\n'),
+                    formatter: [`{rating|${data.multiplayer.rating}}`, `{rd|${data.multiplayer.rd}}`].join('\n'),
                     align: 'right',
                     backgroundColor: {
                         image: card,
@@ -251,8 +247,8 @@ const valid = computed(() => {
     return (
         isNonNullish(data.multiplayer.history.data) &&
         isNonNullish(data.multiplayer.history.split_interval) &&
-        isNonNullish(data.multiplayer.history.min_tr) &&
-        isNonNullish(data.multiplayer.history.max_tr) &&
+        isNonNullish(data.multiplayer.history.min_value) &&
+        isNonNullish(data.multiplayer.history.max_value) &&
         isNonNullish(data.multiplayer.history.offset)
     );
 });
@@ -260,14 +256,19 @@ const valid = computed(() => {
 
 <template>
     <template v-if="valid">
-        <div
-            class="w-143.75 h-68.75 rounded-7.5"
-            style="
-                background: linear-gradient(222deg, #525252 11.97%, #1d1916 89.73%);
-                box-shadow: 0 0.9375rem 1.875rem 0 #0000004d;
-            "
-        >
-            <chart :option="option" />
+        <div class="relative">
+            <div
+                class="w-143.75 h-68.75 rounded-7.5"
+                style="
+                    background: linear-gradient(222deg, #525252 11.97%, #1d1916 89.73%);
+                    box-shadow: 0 0.9375rem 1.875rem 0 #0000004d;
+                "
+            >
+                <chart :option="option" />
+            </div>
+            <div class="absolute top-4.75 left-6">
+                <span class="font-template text-6.25 fw-800 text-[#fafafa]">Rating</span>
+            </div>
         </div>
     </template>
 </template>

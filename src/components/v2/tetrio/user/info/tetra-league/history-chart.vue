@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { Chart } from '@antv/g2';
 import { tryOnMounted } from '@vueuse/core';
-import type { historyDataType } from '~/types/history-data';
+import type { historyData } from '~/types/history-data';
 
 const { locale } = useI18n();
 
 const props = defineProps<{
     readonly current_tr: number;
-    readonly data: historyDataType;
+    readonly data: historyData;
 }>();
 
 const container = ref<HTMLElement>();
@@ -36,10 +36,10 @@ tryOnMounted(() => {
         },
 
         encode: {
-            x: (data: historyDataType[number]) => {
+            x: (data: historyData[number]) => {
                 return data.record_at;
             },
-            y: (data: historyDataType[number]) => {
+            y: (data: historyData[number]) => {
                 return Number(data.score);
             },
         },

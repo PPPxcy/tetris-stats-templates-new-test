@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import { z } from 'zod';
 import all from '~/assets/images/achievements/all.webp';
 import diamond from '~/assets/images/achievements/diamond.webp';
-import { z } from 'zod';
 
 const data = useData(
     z
@@ -28,9 +28,7 @@ const calculateAchievementStyle = (index: number) => {
         <n-flex align="center" class="h-full" justify="center">
             <n-text class="text-4xl drop-shadow-[0_0_0.2rem_white] fw-bold">{{ data.user.ar }} AR</n-text>
 
-            <template v-if="data.user.achievements.length > 0">
-                <n-divider vertical />
-            </template>
+            <n-divider vertical v-if="data.user.achievements.length > 0" />
 
             <template v-for="achievement in data.user.achievements">
                 <div class="relative size-20">

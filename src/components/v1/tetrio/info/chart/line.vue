@@ -7,7 +7,7 @@ import { isNonNullish } from 'remeda';
 import chart from 'vue-echarts';
 import { z } from 'zod';
 import point from '~/assets/images/chart/point.svg';
-import historyData from '~/types/history-data';
+import history from '~/types/v1/history';
 
 use([SVGRenderer, GridComponent, LineChart, MarkLineComponent]);
 
@@ -19,13 +19,7 @@ const data = useData(
                 tr: z.string(),
                 global_rank: z.number(),
 
-                history: z.object({
-                    data: historyData,
-                    split_interval: z.number(),
-                    min_tr: z.number(),
-                    max_tr: z.number(),
-                    offset: z.number(),
-                }),
+                history: history,
             }),
         })
         .readonly(),
@@ -136,8 +130,8 @@ const option = computed(() => {
                 },
             },
             offset: 70,
-            max: data.multiplayer.history.max_tr + data.multiplayer.history.offset,
-            min: data.multiplayer.history.min_tr - data.multiplayer.history.offset,
+            max: data.multiplayer.history.max_value + data.multiplayer.history.offset,
+            min: data.multiplayer.history.min_value - data.multiplayer.history.offset,
         },
         series: [
             {
@@ -228,8 +222,8 @@ const valid = computed(() => {
     return (
         isNonNullish(data.multiplayer.history.data) &&
         isNonNullish(data.multiplayer.history.split_interval) &&
-        isNonNullish(data.multiplayer.history.min_tr) &&
-        isNonNullish(data.multiplayer.history.max_tr) &&
+        isNonNullish(data.multiplayer.history.min_value) &&
+        isNonNullish(data.multiplayer.history.max_value) &&
         isNonNullish(data.multiplayer.history.offset)
     );
 });

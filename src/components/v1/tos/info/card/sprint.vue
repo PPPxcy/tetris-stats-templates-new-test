@@ -5,7 +5,7 @@ const data = useData(
     z
         .object({
             singleplayer: z.object({
-                '40l': z.string(),
+                sprint: z.string(),
             }),
         })
         .readonly(),
@@ -16,7 +16,7 @@ const valid = computed(() => {
         return false;
     }
 
-    return isNonNullish(data.singleplayer['40l']);
+    return isNonNullish(data.singleplayer.sprint);
 });
 </script>
 
@@ -90,7 +90,7 @@ const valid = computed(() => {
 
             <div class="absolute bottom-4.25 left-6">
                 <span class="font-template text-11.25 fw-500 color-[#b42323]">
-                    {{ data.singleplayer['40l'] }}
+                    {{ data.singleplayer.sprint }}
                 </span>
             </div>
         </div>

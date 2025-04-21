@@ -7,7 +7,6 @@ const historyData = z.array(
     }),
 );
 type historyData = z.infer<typeof historyData>;
-type historyDataType = z.infer<typeof historyData>;
 
 export default historyData;
-export type { historyDataType };
+export { historyData };
