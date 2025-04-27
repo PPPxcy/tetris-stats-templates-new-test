@@ -36,7 +36,7 @@ export default defineNuxtConfig({
         head: {
             script: [
                 {
-                    innerHTML: `window.__DATA__ = '{{ data }}';`,
+                    innerHTML: `window.__DATA__ = {{ data | tojson }};`,
                     type: 'text/javascript',
                 },
                 {
