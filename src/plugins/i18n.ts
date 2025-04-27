@@ -32,15 +32,15 @@ export default defineNuxtPlugin((app) => {
                 const data = useData(
                     z
                         .object({
-                            _lang: z.nativeEnum(Languages).optional(),
+                            lang: z.nativeEnum(Languages).optional(),
                         })
                         .readonly(),
                 );
-                if (!data._lang) {
+                if (!data.lang) {
                     return;
                 }
                 const nuxtApp = useNuxtApp();
-                nuxtApp.$i18n.locale.value = data._lang;
+                nuxtApp.$i18n.locale.value = data.lang;
             } catch (e) {
                 console.error(e);
                 return;
