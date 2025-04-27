@@ -4,7 +4,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { partial } from 'lodash';
 import { isNonNullish } from 'remeda';
 import { z } from 'zod';
-import { formatDateFns } from '~/plugins/i18n';
+import { formatDateFns } from '~/utils/i18n';
 import { calculateXpLevel } from '~/utils/xp';
 
 const { locale } = useI18n();

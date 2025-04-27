@@ -115,6 +115,7 @@ onMounted(async () => {
             '40l': '1m 10.2s',
             blitz: '289,085',
         },
+        lang: 'zh-CN',
     });
 
     await nextTick();

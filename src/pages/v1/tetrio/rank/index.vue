@@ -121,6 +121,8 @@ const rankImageMap = asyncComputed(async () => {
         ),
     );
 }, {});
+
+useLang();
 </script>
 
 <template>

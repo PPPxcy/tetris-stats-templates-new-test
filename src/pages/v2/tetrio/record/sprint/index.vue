@@ -23,6 +23,8 @@ const title = computed(() => {
 
     return '40L';
 });
+
+useLang();
 </script>
 
 <template>

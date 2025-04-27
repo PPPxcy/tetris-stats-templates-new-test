@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+useLang();
+</script>
+
 <template>
     <div id="content" class="w-fit bg-[#f1f1f1] px-6.25">
         <div class="mt-5.5">

@@ -39,6 +39,8 @@ const winner_user_id = computed(() => {
         return b.points - a.points;
     })[0].user.id;
 });
+
+useLang();
 </script>
 
 <template>

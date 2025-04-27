@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { showSingleplayer } from '~/utils/show';
+
+useLang();
 </script>
 
 <template>

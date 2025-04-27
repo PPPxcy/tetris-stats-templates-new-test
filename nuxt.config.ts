@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     ssr: false,
     srcDir: 'src',
     modules: ['@unocss/nuxt', '@nuxtjs/i18n', 'nuxt-zod-i18n', 'nuxtjs-naive-ui'],
+
     i18n: {
         defaultLocale: 'zh-CN',
         strategy: 'no_prefix',
@@ -13,11 +14,13 @@ export default defineNuxtConfig({
             { code: 'en-US', name: 'English', file: 'en-US.json' },
             { code: 'zh-CN', name: 'Chinese', file: 'zh-CN.json' },
         ],
+        detectBrowserLanguage: false,
         experimental: {
             typedOptionsAndMessages: 'default',
             generatedLocaleFilePathFormat: 'relative',
         },
     },
+
     vite: {
         plugins: [
             AutoImport({
@@ -32,6 +35,7 @@ export default defineNuxtConfig({
             }),
         ],
     },
+
     app: {
         head: {
             script: [
@@ -47,6 +51,7 @@ export default defineNuxtConfig({
         },
         cdnURL: './',
     },
+
     router: {
         options: {
             hashMode: true,
@@ -54,4 +59,10 @@ export default defineNuxtConfig({
     },
 
     compatibilityDate: '2024-11-04',
+
+    devtools: {
+        timeline: {
+            enabled: true,
+        },
+    },
 });

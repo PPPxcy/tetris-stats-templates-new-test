@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { isNonNullish } from 'remeda';
 import { z } from 'zod';
 import historyData from '~/types/history-data';

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { isNonNullish } from 'remeda';
 import { getAvatar } from '~/components/shared/avatar.vue';
 import Avatar from '~/types/avatar';

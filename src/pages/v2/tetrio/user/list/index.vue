@@ -36,6 +36,8 @@ const data = useData(
         })
         .readonly(),
 );
+
+useLang();
 </script>
 
 <template>

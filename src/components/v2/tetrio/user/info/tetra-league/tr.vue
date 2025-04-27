@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { isNonNullish } from 'remeda';
 import type Rank from '~/types/rank';
 

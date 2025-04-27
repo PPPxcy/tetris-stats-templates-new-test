@@ -8,7 +8,7 @@ type BlitzStatistic = z.infer<typeof BlitzStatistic>;
 export { BlitzStatistic };
 </script>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 const { locale } = useI18n();
 
 const data = useData(
@@ -18,6 +18,8 @@ const data = useData(
         })
         .readonly(),
 );
+
+useLang();
 </script>
 
 <template>

@@ -14,7 +14,7 @@ type AverageData = z.infer<typeof AverageData>;
 export { AverageData };
 </script>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ValidRank } from '~/types/rank';
 
 const { locale } = useI18n();
@@ -35,6 +35,8 @@ const data = useData(
         })
         .readonly(),
 );
+
+useLang();
 </script>
 
 <template>

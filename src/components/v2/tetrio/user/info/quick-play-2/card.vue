@@ -3,8 +3,8 @@ import { asyncComputed } from '@vueuse/core';
 import { formatDistanceToNow } from 'date-fns';
 import { partial } from 'lodash';
 import { isNonNullish, isNullish } from 'remeda';
-import { formatDateFns } from '~/plugins/i18n';
 import type zenith from '~/types/zenith';
+import { formatDateFns } from '~/utils/i18n';
 
 const { locale } = useI18n();
 
