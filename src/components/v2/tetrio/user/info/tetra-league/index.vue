@@ -53,24 +53,26 @@ const data = useData(
             :current_tr="data.tetra_league.tr"
             :data="data.tetra_league.history"
         />
-        <v2-tetrio-user-info-tetra-league-tr
-            :rank="data.tetra_league.rank"
-            :tr="data.tetra_league.tr"
-            :glicko="data.tetra_league.glicko"
-            :rd="data.tetra_league.rd"
-            :country="data.user.country"
-            :global_rank="data.tetra_league.global_rank"
-            :country_rank="data.tetra_league.country_rank"
-            :statistic="data.tetra_league.statistic"
-            :decaying="data.tetra_league.decaying"
-            :highest_rank="data.tetra_league.highest_rank"
-        />
-        <v2-tetrio-user-info-tetra-league-data
-            :pps="data.tetra_league.pps"
-            :apm="data.tetra_league.apm"
-            :apl="data.tetra_league.apl"
-            :vs="data.tetra_league.vs"
-            :adpl="data.tetra_league.adpl"
-        />
+        <n-flex :wrap="false">
+            <v2-tetrio-user-info-tetra-league-tr
+                :rank="data.tetra_league.rank"
+                :tr="data.tetra_league.tr"
+                :glicko="data.tetra_league.glicko"
+                :rd="data.tetra_league.rd"
+                :country="data.user.country"
+                :global_rank="data.tetra_league.global_rank"
+                :country_rank="data.tetra_league.country_rank"
+                :statistic="data.tetra_league.statistic"
+                :decaying="data.tetra_league.decaying"
+                :highest_rank="data.tetra_league.highest_rank"
+            />
+            <v2-tetrio-user-info-tetra-league-data
+                :pps="data.tetra_league.pps"
+                :apm="data.tetra_league.apm"
+                :apl="data.tetra_league.apl"
+                :vs="data.tetra_league.vs"
+                :adpl="data.tetra_league.adpl"
+            />
+        </n-flex>
     </template>
 </template>
