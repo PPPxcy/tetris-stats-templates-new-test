@@ -81,6 +81,17 @@ onMounted(async () => {
                     progress: -1,
                     total: 15473,
                 },
+				{
+					key: 48,
+					rank_type: 4,
+					ar_type: 2,
+					rank: 0,
+					pos: -1,
+					progress: -1,
+					total: -1,
+					stub: undefined,
+					achieved_score: -352
+				},
                 {
                     key: 51,
                     rank_type: 3,

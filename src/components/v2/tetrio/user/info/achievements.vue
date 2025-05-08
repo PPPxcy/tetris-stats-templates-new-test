@@ -52,13 +52,13 @@ const data = useData(
                         key: z.number().int(),
                         rank_type: z.nativeEnum(RankType),
                         ar_type: z.nativeEnum(ArType),
-                        stub: z.boolean().nullable(),
+                        stub: z.boolean().optional(),
                         rank: z.nativeEnum(Rank).nullable(),
                         achieved_score: z.number().nullable(),
                         pos: z.number().int().nullable(),
                         progress: z.number().nullable(),
                         total: z.number().int().nullable(),
-                    }),
+                    }).nullable(),
                 ),
             }),
         })
@@ -122,7 +122,7 @@ function calcFrame({ rank, stub }: { rank: Rank; stub: boolean | null }) {
         [Rank.PLATINUM]: framePlatinum,
         [Rank.DIAMOND]: frameDiamond,
         [Rank.ISSUED]: frameIssued,
-    }[stub ? 0 : rank];
+    }[stub ? Rank.NONE : rank];
 }
 
 function calcIcon(key: number) {
@@ -198,16 +198,16 @@ function calcProgressClip(progress: number) {
     return 'none';
 }
 
-function createAchievement({
-    stub,
-    rank,
-    key,
-    pos,
-    ar_type,
-    progress,
-    achieved_score,
-    total,
-    rank_type,
+function analyzeAchievement({
+    stub = null,
+    rank = null,
+    key = -1,
+    pos = null,
+    ar_type = ArType.UNRANKED,
+    progress = null,
+    achieved_score = null,
+    total = null,
+    rank_type = RankType.PERCENTILE,
 }: {
     stub: boolean | null;
     rank: Rank | null;
@@ -220,10 +220,10 @@ function createAchievement({
     rank_type: RankType;
 }) {
     if (rank === null || pos === null || total === null || achieved_score === null)
-        return `<img class="absolute top-0 left-0 size-20" src="${frameNone}" />`;
+        return {frame: frameNone};
     let frame = calcFrame({ rank, stub }),
         icon = calcIcon(key),
-        invert = 'filter-invert',
+        invert = 100,
         wreath = calcWreath({ pos, ar_type, stub }),
         progressValue = calcProgress({
             pos,
@@ -234,21 +234,28 @@ function createAchievement({
             progress,
             stub,
         });
-    if (!stub && rank === Rank.NONE) invert += '-70';
-    return (
-        `<img class="absolute top-0 left-0 size-20" src="${frame}" />` +
-        (progressValue
-            ? `<div class="absolute top-0 left-0 size-20">
-                <img class="absolute top-0 left-0 size-20" src="${frameRingPiece}" style="clip-path: ${calcProgressClip(progressValue)};" />
-                <img class="absolute top-0 left-0 size-20" src="${frameRingPiece}" style="clip-path: ${calcProgressClip(progressValue)}; transform: rotate(0.5turn);" />
-            </div>`
-            : '') +
-        (wreath ? `<img class="absolute top-0 left-0 size-20" src="${wreath}" />` : '') +
-        `<div class="absolute top-1/2 left-1/2 -translate-1/2 ${invert}">
-                <div class="size-11" style="background-image: url(${icon.img}); background-size: 800% 800%; background-position: -${icon.pos[0]}00% -${icon.pos[1]}00%;"></div>
-            </div>`
-    );
+    if (!stub && rank === Rank.NONE) invert = 70;
+	return {
+		frame,
+		progress: progressValue,
+		wreath,
+		icon: {...icon, invert},
+	}
 }
+
+function calcIconStyle({ img, pos }: { img: string; pos: [number, number] }) {
+	return {
+		backgroundImage: `url(${img})`,
+		backgroundSize: '800% 800%',
+		backgroundPosition: `-${pos[0]}00% -${pos[1]}00%`,
+	};
+}
+
+const achievementsAnalyzed = computed(() => {
+	return data.user.achievements.map(achievement => {
+		return analyzeAchievement(achievement || {});
+	});
+});
 </script>
 
 <template>
@@ -258,8 +265,22 @@ function createAchievement({
 
             <n-divider vertical v-if="data.user.achievements.length > 0" />
 
-            <template v-for="achievement in data.user.achievements">
-                <div class="relative size-20" v-html="createAchievement(achievement)"></div>
+            <template v-for="achInfo in achievementsAnalyzed">
+                <div class="relative size-20">
+					<div class="absolute top-0 left-0">
+						<img class="size-20" :src="achInfo.frame" />
+					</div>
+					<div class="absolute top-0 left-0" v-if="achInfo.progress">
+						<img class="absolute top-0 left-0 size-20" :src="frameRingPiece" :style="`clip-path: ${calcProgressClip(achInfo.progress)};`" />
+						<img class="absolute top-0 left-0 size-20" :src="frameRingPiece" :style="`clip-path: ${calcProgressClip(achInfo.progress)}; transform: rotate(0.5turn);`" />
+					</div>
+					<div class="absolute top-0 left-0" v-if="achInfo.wreath">
+						<img class="size-20" :src="achInfo.wreath" />
+					</div>
+					<div class="absolute top-1/2 left-1/2 -translate-1/2" v-if="achInfo.icon">
+						<div :style="calcIconStyle(achInfo.icon)" :class="['size-11', achInfo.icon.invert === 70 ? 'filter-invert-70' : 'filter-invert-100']" />
+					</div>
+				</div>
             </template>
         </n-flex>
     </n-card>
